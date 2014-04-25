@@ -13,8 +13,7 @@ public class Products extends Controller
 	
 	public static Result list()
 	{
-		Set<Product> products = Product.findAll();
-		return ok(list.render(products));
+		return TODO;
 	}
 	
 	public static Result showBlank()
@@ -24,28 +23,12 @@ public class Products extends Controller
 	
 	public static Result show(Long ean)
 	{
-		final Product product = Product.findByEan(ean);
-		if(product == null)
-		{
-			flash("error", String.format("Product %s does not exist.", ean));
-			return redirect(routes.Products.list());
-		}
 
-		Form<Product> filledForm = productForm.fill(product);
-		return ok(show.render(filledForm));
+		return TODO;
 	}
 	
 	public static Result save()
 	{
-		Form<Product> boundForm = productForm.bindFromRequest();
-		if(boundForm.hasErrors())
-		{
-			flash("error", "Please correct the form below.");
-			return badRequest(show.render(boundForm));
-		}
-		Product product = boundForm.get();
-		Product.add(product);
-		flash("success", String.format("Successfully added product %s", product));
-		return redirect(routes.Products.list());
+		return TODO;
 	}
 }
