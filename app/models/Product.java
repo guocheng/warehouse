@@ -5,9 +5,13 @@ import play.data.validation.Constraints;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import play.mvc.PathBindable;
+import java.util.Map;
 
-public class Product implements PathBindable<Product>
+import play.libs.F.Option;
+import play.mvc.PathBindable;
+import play.mvc.QueryStringBindable;
+
+public class Product implements QueryStringBindable<Product>
 {
 
 	private static List<Product> products;
@@ -94,9 +98,9 @@ public class Product implements PathBindable<Product>
 	}
 
   @Override
-  public Product bind(String key, String value)
+  public Option<Product> bind(String key, Map<String, String[]> data)
   {
-    return findByEan(value);
+    return Option.Some(findByEan(data.get("ean")[0]));
   }
 
   @Override
